@@ -4,7 +4,6 @@ import HeroView from "../views/HeroView"
 import OurCoffeeView from "../views/OurCoffeeView"
 import Goods from "../views/Goods"
 import Contacts from "../views/Contacts"
-import ItemPage from "../views/ItemPage"
 import ThanksPage from "../views/ThanksPage"
 
 Vue.use(VueRouter);
@@ -14,7 +13,6 @@ const routes = [
     { path: '/our-coffee', component: OurCoffeeView},
     { path: '/goods', component: Goods},
     { path: '/contacts', component: Contacts},
-    { path: '/coffee-item', component: ItemPage},
     { path: '/thanks-page', component: ThanksPage},
 ]
 
