@@ -5,10 +5,10 @@
         <div class="col-lg-6 offset-lg-3">
           <ul class="footer d-flex flex-wrap">
 
-            <nav-item :link="links.header.link" classLink="footer__item">
+            <nav-item :link="links.footer.link" classLink="footer__item">
               <img
-                :src="require(`@/assets/logo/${links.header.icon}`)"
-                :alt="links.header.icon"
+                :src="require(`@/assets/logo/${links.footer.icon}`)"
+                :alt="links.footer.icon"
               />
             </nav-item>
 
@@ -34,37 +34,13 @@
 
 <script>
 import NavItem from "@/components/NavItem.vue";
-import { v4 as uuidv4 } from "uuid";
 
 export default {
   components: { NavItem },
-  data() {
-    return {
-      links: {
-        header: {
-          id: uuidv4(),
-          link: "/",
-          icon: "Logo_black.svg",
-        },
-        other: [
-          {
-            id: uuidv4(),
-            text: "Our coffee",
-            link: "/our-coffee",
-          },
-          {
-            id: uuidv4(),
-            text: "For your pleasure",
-            link: "/goods",
-          },
-          {
-            id: uuidv4(),
-            text: "Contact us",
-            link: "/contacts",
-          },
-        ],
-      },
-    };
-  },
+  computed: {
+    links(){
+      return this.$store.getters['getFooterLinks']
+    }
+  }
 };
 </script>
