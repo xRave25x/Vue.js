@@ -4,37 +4,29 @@
       <div class="container">
         <div class="row">
           <div class="col">
-                    <nav-bar-component />
+            <nav-bar-component />
           </div>
         </div>
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
             <h1 class="title-big">Everything You Love About Coffee</h1>
-            <img
-              class="beanslogo"
-              src="@/assets/logo/Beans_logo.svg"
-              alt="Beans logo"
-            />
+            <img class="beanslogo" src="@/assets/logo/Beans_logo.svg" alt="Beans logo" />
             <div class="preview__subtitle">
               We makes every day full of energy and taste
             </div>
             <div class="preview__subtitle">Want to try our beans?</div>
-            <a href="./coffeepage.html" class="preview__btn">More</a>
+            <a href="./coffeepage.html" class="preview__btn" @click.prevent="smoothScroll">More</a>
           </div>
         </div>
       </div>
     </div>
 
-    <section class="about">
+    <section class="about" id="about" ref="about">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 offset-lg-3">
             <div class="title">About Us</div>
-            <img
-              class="beanslogo"
-              src="@/assets/logo/Beans_logo_dark.svg"
-              alt="Beans logo"
-            />
+            <img class="beanslogo" src="@/assets/logo/Beans_logo_dark.svg" alt="Beans logo" />
             <div class="about__text">
               Extremity sweetness difficult behaviour he of. On disposal of as
               landlord horrible. Afraid at highly months do things on at.
@@ -56,25 +48,19 @@
     </section>
     <section class="best">
       <div class="container">
-        <div class="title">Our best</div>
+        <div class="title" ref="ourBest">Our best</div>
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
             <div class="best__wrapper">
-              <product-card
-                v-for="bestseller in bestsellers"
-                :key="bestseller.id"
-                classItem="best__item"
-                :name="bestseller.name"
-                :price="bestseller.price"
-                :image="bestseller.image"
-              />
-              
+              <product-card v-for="bestseller in bestsellers" :key="bestseller.id" classItem="best__item"
+                :name="bestseller.name" :price="bestseller.price" :image="bestseller.image" />
+
             </div>
           </div>
         </div>
       </div>
     </section>
-    
+
   </main>
 </template>
 
@@ -83,30 +69,40 @@ import NavBarComponent from '@/components/NavBarComponent.vue';
 import { v4 as uuidv4 } from 'uuid';
 import ProductCard from '@/components/ProductCard.vue';
 
+import { scrollIntoView } from "seamless-scroll-polyfill";
+
 export default {
-    components: {NavBarComponent,ProductCard},
-    data() {
+  components: { NavBarComponent, ProductCard },
+  data() {
     return {
       bestsellers: [
         {
-          id:  uuidv4(),
+          id: uuidv4(),
           name: 'Solimo Coffee Beans 2kg',
           price: 10.73,
           image: 'coffee-1.jpg'
         },
         {
-          id:  uuidv4(),
+          id: uuidv4(),
           name: 'Presto Coffee Beans 1kg',
           price: 15.99,
           image: 'coffee-2.jpg'
         },
         {
-          id:  uuidv4(),
+          id: uuidv4(),
           name: 'AROMISTICO Coffee 1kg',
           price: 6.99,
           image: 'coffee-3.jpg'
         },
-      ]
+      ],
+    }
+  },
+  methods: {
+    smoothScroll() {
+      scrollIntoView(this.$refs.ourBest, { 
+        behavior: "smooth", 
+        block: "start"
+      });
     }
   }
 }
