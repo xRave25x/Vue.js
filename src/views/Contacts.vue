@@ -157,6 +157,20 @@ export default {
             const isFormCorrect = await this.v$.$validate()
         if (!isFormCorrect) return
 
+        const message = {
+            name: this.name,
+            email: this.email,
+            phone: this.phone,
+            message: this.message
+        }
+
+        fetch('http://localhost:3000/contacts', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(message)
+        })
 
         }
     }
